@@ -1903,8 +1903,6 @@ hmon_hitmon(
         hmd.destroyed = TRUE; /* return FALSE; */
     } else if (hmd.destroyed) {
         if (!hmd.already_killed) {
-            if (troll_baned(mon, obj))
-                gm.mkcorpstat_norevive = TRUE;
             killed(mon); /* takes care of most messages */
             gm.mkcorpstat_norevive = FALSE;
         }
@@ -4859,12 +4857,6 @@ damageum(
     mdef->mstrategy &= ~STRAT_WAITFORU; /* in case player is very fast */
     mdef->mhp -= mhm.damage;
     if (DEADMONSTER(mdef)) {
-        /* troll killed by Trollsbane won't auto-revive; FIXME? same when
-           Trollsbane is wielded as primary and two-weaponing kills with
-           secondary, which matches monster vs monster behavior but is
-           different from the non-poly'd hero vs monster behavior */
-        if (mattk->aatyp == AT_WEAP || mattk->aatyp == AT_CLAW)
-            gm.mkcorpstat_norevive = troll_baned(mdef, uwep) ? TRUE : FALSE;
         /* (DEADMONSTER(mdef) and !mhm.damage => already killed) */
         if (mdef->mtame && !cansee(mdef->mx, mdef->my)) {
             You_feel("embarrassed for a moment.");
@@ -5218,7 +5210,6 @@ boolean
 m_is_steadfast(struct monst *mtmp)
 {
     boolean is_u = (mtmp == &gy.youmonst);
-    struct obj *otmp = is_u ? uwep : MON_WEP(mtmp);
 
     /* must be on the ground (or in water) */
     if ((is_u ? (Flying || Levitation)
@@ -5227,15 +5218,12 @@ m_is_steadfast(struct monst *mtmp)
         || (Is_waterlevel(&u.uz) && !is_pool(u.ux, u.uy))) /* air bubble */
         return FALSE;
 
-    if (is_art(otmp, ART_GIANTSLAYER))
-        return TRUE;
-
     /* steadfast if carrying any loadstone (and not floating or flying);
        'is_u' test not needed here; m_carrying() is 'youmonst' aware */
     if (m_carrying(mtmp, LOADSTONE))
         return TRUE;
     /* when mounted and steed is target of knockback, check the rider for
-       a loadstone too (Giantslayer's protection doesn't extend to steed) */
+       a loadstone too */
     if (u.usteed && mtmp == u.usteed && carrying(LOADSTONE))
         return TRUE;
 
@@ -5262,9 +5250,6 @@ mhitm_knockback(
     boolean was_u = FALSE, dismount = FALSE;
     struct obj *wep = weapon_used ? (u_agr ? uwep : MON_WEP(magr))
                                   : (struct obj *) 0;
-
-    if (wep && is_art(wep, ART_OGRESMASHER))
-        chance = 2;
 
     if (rn2(chance))
         return FALSE;

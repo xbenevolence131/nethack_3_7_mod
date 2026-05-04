@@ -872,8 +872,6 @@ one_characteristic(int mode, int final, int attrindx)
     case A_DEX:
         break;
     case A_CON:
-        if (u_wield_art(ART_OGRESMASHER) && uwep->cursed)
-            hide_innate_value = TRUE;
         break;
     case A_INT:
         if (uarmh && uarmh->otyp == DUNCE_CAP && uarmh->cursed)

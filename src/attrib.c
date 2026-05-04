@@ -1223,8 +1223,7 @@ acurr(int chridx)
                          || u.umonnum == PM_AMOROUS_DEMON))
             result = 18;
     } else if (chridx == A_CON) {
-        if (u_wield_art(ART_OGRESMASHER))
-            result = 25;
+        ; /* there aren't any special cases for constitution */
     } else if (chridx == A_INT || chridx == A_WIS) {
         /* Yes, this may raise Int and/or Wis if hero is sufficiently
            stupid.  There are lower levels of cognition than "dunce". */
@@ -1278,8 +1277,7 @@ extremeattr(
         if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER)
             lolimit = hilimit;
     } else if (attrindx == A_CON) {
-        if (u_wield_art(ART_OGRESMASHER))
-            lolimit = hilimit;
+        ; /* there aren't any special cases for constitution */
     }
     /* this exception is hypothetical; the only other worn item affecting
        Int or Wis is another helmet so can't be in use at the same time */

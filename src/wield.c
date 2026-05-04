@@ -104,12 +104,6 @@ setuwep(struct obj *obj)
     if (obj == uwep)
         return; /* necessary to not set gu.unweapon */
     setworn(obj, W_WEP);
-    /* handle Ogresmasher before Sunsword; even though they can't be happening
-       at the same time, botl flag update should come before pline message */
-    if (uwep == obj
-        && ((uwep && uwep->oartifact == ART_OGRESMASHER)
-            || (olduwep && olduwep->oartifact == ART_OGRESMASHER)))
-        disp.botl = TRUE; /* gaining or losing Con bonus */
     /* This message isn't printed in the caller because it happens
      * *whenever* Sunsword is unwielded, from whatever cause. */
     if (uwep == obj && artifact_light(olduwep) && olduwep->lamplit) {
@@ -117,10 +111,6 @@ setuwep(struct obj *obj)
         if (!Blind)
             pline("%s shining.", Tobjnam(olduwep, "stop"));
     }
-    if (uwep == obj
-        && (u_wield_art(ART_OGRESMASHER)
-            || is_art(olduwep, ART_OGRESMASHER)))
-        disp.botl = TRUE;
     /* Note: Explicitly wielding a pick-axe will not give a "bashing"
      * message.  Wielding one via 'a'pplying it will.
      * 3.2.2:  Wielding arbitrary objects will give bashing message too.

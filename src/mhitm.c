@@ -1078,8 +1078,6 @@ mdamagem(
             place_monster(mdef, mdef->mx, mdef->my);
             mdef->mhp = 0;
         }
-        if (mattk->aatyp == AT_WEAP || mattk->aatyp == AT_CLAW)
-            gm.mkcorpstat_norevive = troll_baned(mdef, mwep) ? TRUE : FALSE;
         gz.zombify = (!mwep && zombie_maker(magr)
                      && (mattk->aatyp == AT_TUCH
                          || mattk->aatyp == AT_CLAW

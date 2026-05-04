@@ -243,10 +243,6 @@ struct monst {
 #define is_obj_mappear(mon,otyp) (M_AP_TYPE(mon) == M_AP_OBJECT \
                                   && (mon)->mappearance == (otyp))
 
-/* is mon m (presumably just killed) a troll and obj o Trollsbane? */
-#define troll_baned(m,o) \
-    ((m)->data->mlet == S_TROLL && (o) && (o)->oartifact == ART_TROLLSBANE)
-
 #define engulfing_u(mon) (u.uswallow && (u.ustuck == (mon)))
 #define helpless(mon) ((mon)->msleeping || !(mon)->mcanmove)
 
