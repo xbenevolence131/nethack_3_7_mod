@@ -1100,12 +1100,12 @@ spec_dbon(struct obj *otmp, struct monst *mon, int tmp)
         /* Grimtooth has SPFX settings to warn against elves but we want its
            damage bonus to apply to all targets, so bypass spec_applies() */
         gs.spec_dbon_applies = TRUE;
-    else if (is_art(otmp, ART_GUNGIR))
+    else if (is_art(otmp, ART_GUNGNIR))
         gs.spec_dbon_applies = TRUE;
     else
         gs.spec_dbon_applies = spec_applies(weap, mon);
 
-    if (gs.spec_dbon_applies && is_art(otmp, ART_GUNGIR))
+    if (gs.spec_dbon_applies && is_art(otmp, ART_GUNGNIR))
         return 2 + ((otmp == gt.thrownobj) ? rnd(6) : 0);
     if (gs.spec_dbon_applies)
         return weap->attk.damd ? rnd((int) weap->attk.damd) : max(tmp, 1);

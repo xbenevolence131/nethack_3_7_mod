@@ -171,9 +171,9 @@ static NEARDATA struct artifact artilist[] = {
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM,
       0, 10, 8000L, NO_COLOR, GRAYSWANDIR),
 
-    A("Gungir", SILVER_SPEAR, SPFX_RESTR, 0, 0,
+    A("Gungnir", SILVER_SPEAR, SPFX_RESTR, 0, 0,
       PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM,
-      0, 6, 3500L, NO_COLOR, GUNGIR),
+      0, 6, 3500L, NO_COLOR, GUNGNIR),
 
     /*
      *      Two problems:  1) doesn't let trolls regenerate heads,

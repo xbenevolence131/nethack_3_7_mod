@@ -165,7 +165,7 @@ hitval(struct obj *otmp, struct monst *mon)
         tmp += 2;
 
     if (is_spear(otmp)
-        && (is_art(otmp, ART_GUNGIR) || strchr(kebabable, ptr->mlet)))
+        && (is_art(otmp, ART_GUNGNIR) || strchr(kebabable, ptr->mlet)))
         tmp += 2;
 
     /* trident is highly effective against swimmers */
