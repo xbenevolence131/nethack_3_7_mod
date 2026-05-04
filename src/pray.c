@@ -1793,21 +1793,10 @@ bestow_artifact(uchar max_giftvalue)
     }
 
     if (do_bestow) {
-        struct obj *otmp = (struct obj *) 0;
-
-        if (Role_if(PM_VALKYRIE) && u.ugifts == 0) {
-            otmp = mksobj(SILVER_SPEAR, TRUE, FALSE);
-            otmp = oname(otmp, artiname(ART_GUNGNIR), ONAME_NO_FLAGS);
-            if (!is_art(otmp, ART_GUNGNIR)) {
-                obfree(otmp, (struct obj *) 0);
-                otmp = (struct obj *) 0;
-            }
-        }
-        if (!otmp) {
-            /* mk_artifact() with NULL obj and a_align() arg can return NULL */
-            otmp = mk_artifact((struct obj *) 0, a_align(u.ux, u.uy),
-                               max_giftvalue, TRUE);
-        }
+        struct obj *otmp;
+        /* mk_artifact() with NULL obj and a_align() arg can return NULL */
+        otmp = mk_artifact((struct obj *) 0, a_align(u.ux, u.uy),
+                           max_giftvalue, TRUE);
         if (otmp) {
             char buf[BUFSZ];
 

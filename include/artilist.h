@@ -108,7 +108,7 @@ static NEARDATA struct artifact artilist[] = {
      */
     A("Mjollnir", WAR_HAMMER, /* Mjo:llnir */
       (SPFX_RESTR | SPFX_ATTK), 0, 0, ELEC(5, 24), NO_DFNS, NO_CARY, 0,
-      A_NEUTRAL, PM_VALKYRIE, NON_PM,
+      A_NEUTRAL, NON_PM, NON_PM,
       0, 8, 4000L, NO_COLOR, MJOLLNIR),
 
     A("Cleaver", BATTLE_AXE, SPFX_RESTR, 0, 0, PHYS(3, 6), NO_DFNS, NO_CARY,
@@ -172,7 +172,7 @@ static NEARDATA struct artifact artilist[] = {
       0, 10, 8000L, NO_COLOR, GRAYSWANDIR),
 
     A("Gungnir", SILVER_SPEAR, SPFX_RESTR, 0, 0,
-      PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM,
+      PHYS(0, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_VALKYRIE, NON_PM,
       0, 6, 3500L, NO_COLOR, GUNGNIR),
 
     /*
