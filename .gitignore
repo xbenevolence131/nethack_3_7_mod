@@ -97,3 +97,8 @@ util/*.lib
 util/*.exp
 submodules/CHKSUMS.tmp
 sys/amiga/regex/
+
+# Local Codex inspection/download artifacts
+.codex_inspect/
+nethack-3d-1.3.0.zip
+nevanda_nethack.png
