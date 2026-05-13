@@ -95,6 +95,7 @@
 #define is_undead(ptr) (((ptr)->mflags2 & M2_UNDEAD) != 0L)
 #define is_were(ptr) (((ptr)->mflags2 & M2_WERE) != 0L)
 #define is_elf(ptr) (((ptr)->mflags2 & M2_ELF) != 0L)
+#define is_dark_elf(ptr) ((ptr) == &mons[PM_GREY_ELF])
 #define is_dwarf(ptr) (((ptr)->mflags2 & M2_DWARF) != 0L)
 #define is_gnome(ptr) (((ptr)->mflags2 & M2_GNOME) != 0L)
 #define is_orc(ptr) (((ptr)->mflags2 & M2_ORC) != 0L)

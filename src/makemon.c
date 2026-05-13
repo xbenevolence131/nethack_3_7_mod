@@ -223,6 +223,19 @@ m_initweap(struct monst *mtmp)
                 w2 = KNIFE;
             if (w2)
                 (void) mongets(mtmp, w2);
+        } else if (is_dark_elf(ptr)) {
+            if (!rn2(4))
+                (void) mongets(mtmp, ELVEN_MITHRIL_COAT);
+            if (!rn2(4))
+                (void) mongets(mtmp, ELVEN_CLOAK);
+            if (!rn2(4))
+                (void) mongets(mtmp, ELVEN_BOOTS);
+            if (rn2(2))
+                (void) mongets(mtmp, ELVEN_DAGGER);
+            if (rn2(2))
+                (void) mongets(mtmp, ELVEN_SHORT_SWORD);
+            if (rn2(2))
+                (void) mongets(mtmp, ELVEN_SPEAR);
         } else if (is_elf(ptr)) {
             if (rn2(2))
                 (void) mongets(mtmp,
