@@ -846,12 +846,50 @@ port_help(void)
 }
 #endif /* PORT_HELP */
 
+boolean
+check_user_string(const char *optstr)
+{
+    int userlen;
+    const char *eop, *w, *username;
+
+    if (optstr[0] == '*')
+        return TRUE; /* allow any user */
+    username = svp.plname;
+    if (!username || !*username)
+        username = nh_getenv("USERNAME");
+    if (!username || !*username)
+        return FALSE;
+    userlen = (int) strlen(username);
+    eop = eos((char *) optstr); /* temporarily cast away 'const' */
+    w = optstr;
+    while (w + userlen <= eop) {
+        if (!*w)
+            break;
+        if (isspace((uchar) *w)) {
+            w++;
+            continue;
+        }
+        if (!strncmp(w, username, userlen)) {
+            if (!w[userlen] || isspace((uchar) w[userlen]))
+                return TRUE;
+        }
+        while (*w && !isspace((uchar) *w))
+            w++;
+    }
+    return FALSE;
+}
+
 /* validate wizard mode if player has requested access to it */
 boolean
 authorize_wizard_mode(void)
 {
+    if (sysopt.wizards && sysopt.wizards[0]) {
+        if (check_user_string(sysopt.wizards))
+            return TRUE;
+    }
     if (!strcmp(svp.plname, WIZARD_NAME))
         return TRUE;
+    iflags.wiz_error_flag = TRUE; /* not being allowed into wizard mode */
     return FALSE;
 }
 
